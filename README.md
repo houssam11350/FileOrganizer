@@ -9,7 +9,7 @@ FileOrgainizer uses the following third-party software:
 - doodads & MyGeneration: https://sourceforge.net/projects/mygeneration/
 - Icon Extraction: http://www.codeguru.com/Csharp/Csharp/cs_misc/icons/article.php/c4261/
 
-Features:
+FEATURES:
 - Organize your files in virtual folders called 'workspace'.
 - Associate a 'Description' with each file; so you can search your files by the 'Description'.
 - You can organize your files in 'lists'.
@@ -24,6 +24,9 @@ DOWNLOAD:
 
 SCREENSHOTS
 ![main window](https://raw.githubusercontent.com/houssam11350/FileOrganizer/master/Screenshots/01.png)
+
+DEMO VIDEO
+https://youtu.be/rR7DtJfzjvs
 
 DEVELOPER:
 

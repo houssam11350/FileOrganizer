@@ -11,7 +11,7 @@ FileOrgainizer uses the following third-party software:
 
 Features:
 - Organize your files in virtual folders called 'workspace'.
-- Associate a 'Descrription' with each file; so you can search your files by the 'Description'.
+- Associate a 'Description' with each file; so you can search your files by the 'Description'.
 - You can organize your files in 'lists'.
 - You can link your files together by 'Reference' relatioship; so whenever you find your file, you can find its references.
 - You can associate external 'note' to your files.

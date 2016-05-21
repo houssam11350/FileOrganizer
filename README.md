@@ -22,6 +22,9 @@ DOWNLOAD:
 
 - FileOrganizer_1.0.0.0: https://github.com/houssam11350/FileOrganizer/raw/master/Release/FileOrganizer_1.0.0.0.zip
 
+SCREENSHOTS
+![main window](https://raw.githubusercontent.com/houssam11350/FileOrganizer/master/Screenshots/01.png)
+
 DEVELOPER:
 
 - HOUSSAM ALSHAMI (houssam11350_11350 aatt yahoo doott com).

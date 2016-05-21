@@ -1,0 +1,549 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{39867389-1C02-4ABF-B2EF-4FEB76A44BB9}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FileOrganizer</RootNamespace>
+    <AssemblyName>FileOrganizer</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <ApplicationIcon>e.ico</ApplicationIcon>
+    <StartupObject>FileOrganizer.Program</StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <TargetFrameworkProfile />
+    <PublishUrl>http://localhost/FileOrganizer/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;NOOOOBOOK</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Optimize>true</Optimize>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Debug\FileOrganizer.exe.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE;NooooBOOK BUID_FOR_ME</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Release\FileOrganizer.exe.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+    <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="itextsharp, Version=3.0.10.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DLLs\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpZipLib, Version=0.84.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DLLs\SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.SQLite">
+      <HintPath>DLLs\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Extensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="TabStrip, Version=2.0.5634.34295, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DLLs\TabStrip.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="APIHelper.cs" />
+    <Compile Include="BL\AllowedStringHandler.cs" />
+    <Compile Include="BL\_ListStorageItem_.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BL\MyDbConnection.cs" />
+    <Compile Include="BL\MyEntity.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BL\MyParameter.cs" />
+    <Compile Include="BL\MyQuery.cs" />
+    <Compile Include="BL\IniSimilarItems.cs" />
+    <Compile Include="BL\NoteItem.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BL\Options.cs" />
+    <Compile Include="BL\DirectorySize.cs" />
+    <Compile Include="BL\IniFile.cs" />
+    <Compile Include="BL\IniStorageItem.cs" />
+    <Compile Include="BL\IniWorkSpace.cs" />
+    <Compile Include="BL\MyFileOrganizer.cs" />
+    <Compile Include="BL\RefStorageItem.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BL\SortTypeOptions.cs" />
+    <Compile Include="BL\StorageItemCopier.cs" />
+    <Compile Include="BL\_StorageItem_.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BL\View_RefStorageItem.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BL\WorkSpace.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BL\_ListStorageItem.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BL\_NoteItem.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BL\_QuickList.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BL\_QuickList_.cs" />
+    <Compile Include="BL\_RefStorageItem.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BL\_StorageItem.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BL\TopNOptions.cs" />
+    <Compile Include="BL\View_ListStorageItem.cs" />
+    <Compile Include="BL\_View_ListStorageItem.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BL\_View_RefStorageItem.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BL\_WorkSpace.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TreeNodeRef.cs" />
+    <Compile Include="CTRL\NullableDateTimePicker.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CTRL\cCommon.cs" />
+    <Compile Include="CTRL\VistaButton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DocxToText.cs" />
+    <Compile Include="DragHelper.cs" />
+    <Compile Include="FileEntry.cs" />
+    <Compile Include="IDropSource.cs" />
+    <Compile Include="IDropTarget.cs" />
+    <Compile Include="Images\ResTow.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResTow.resx</DependentUpon>
+    </Compile>
+    <Compile Include="IShellFolder.cs" />
+    <Compile Include="ListViewStorageItem.cs" />
+    <Compile Include="PDFParser.cs" />
+    <Compile Include="QueryString.cs" />
+    <Compile Include="TreeNodeQuickList.cs" />
+    <Compile Include="UI\FrmAbout.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmAbout.Designer.cs">
+      <DependentUpon>FrmAbout.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FrmCustomReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmCustomReport.Designer.cs">
+      <DependentUpon>FrmCustomReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FrmQuickListEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmQuickListEdit.Designer.cs">
+      <DependentUpon>FrmQuickListEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FrmFileMove.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmFileMove.Designer.cs">
+      <DependentUpon>FrmFileMove.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FrmQuickList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmQuickList.Designer.cs">
+      <DependentUpon>FrmQuickList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FrmNote.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmNote.Designer.cs">
+      <DependentUpon>FrmNote.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FrmOptions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmOptions.Designer.cs">
+      <DependentUpon>FrmOptions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FrmTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmTest.Designer.cs">
+      <DependentUpon>FrmTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\TreeViewAllQuickList.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\TreeViewAllQuickList.Designer.cs">
+      <DependentUpon>TreeViewAllQuickList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\CtrlTargetArea.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\CtrlTargetArea.Designer.cs">
+      <DependentUpon>CtrlTargetArea.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FrmGenerateReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmGenerateReport.Designer.cs">
+      <DependentUpon>FrmGenerateReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FrmInputBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmInputBox.Designer.cs">
+      <DependentUpon>FrmInputBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FrmSimilarItems.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmSimilarItems.Designer.cs">
+      <DependentUpon>FrmSimilarItems.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\DelayTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\DelayTextBox.designer.cs">
+      <DependentUpon>DelayTextBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FrmReferenceDrag.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmReferenceDrag.Designer.cs">
+      <DependentUpon>FrmReferenceDrag.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\CtrlReferenceNavigator.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\CtrlReferenceNavigator.Designer.cs">
+      <DependentUpon>CtrlReferenceNavigator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RefViewTreeNode.cs" />
+    <Compile Include="ShellAPI.cs" />
+    <Compile Include="ShellContextMenu.cs" />
+    <Compile Include="Helper.cs" />
+    <Compile Include="IconHandler.cs" />
+    <Compile Include="Shell32.cs" />
+    <Compile Include="SystemIconsManager.cs" />
+    <Compile Include="TreeNodeWorkSpace.cs" />
+    <Compile Include="TxTParser.cs" />
+    <Compile Include="UI\FrmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmMain.Designer.cs">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Images\ResTow.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResTow.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FrmAbout.resx">
+      <DependentUpon>FrmAbout.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FrmCustomReport.resx">
+      <DependentUpon>FrmCustomReport.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FrmQuickListEdit.resx">
+      <DependentUpon>FrmQuickListEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FrmFileMove.resx">
+      <DependentUpon>FrmFileMove.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FrmQuickList.resx">
+      <DependentUpon>FrmQuickList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FrmNote.resx">
+      <DependentUpon>FrmNote.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FrmOptions.resx">
+      <DependentUpon>FrmOptions.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\CtrlTargetArea.resx">
+      <DependentUpon>CtrlTargetArea.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FrmGenerateReport.resx">
+      <DependentUpon>FrmGenerateReport.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FrmInputBox.resx">
+      <DependentUpon>FrmInputBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FrmSimilarItems.resx">
+      <DependentUpon>FrmSimilarItems.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FrmReferenceDrag.resx">
+      <DependentUpon>FrmReferenceDrag.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\CtrlReferenceNavigator.resx">
+      <DependentUpon>CtrlReferenceNavigator.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FrmMain.resx">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FrmNewWorkSpace.resx">
+      <DependentUpon>FrmNewWorkSpace.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\CtrlSearchContentProgress.resx">
+      <DependentUpon>CtrlSearchContentProgress.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FrmStorageItem.resx">
+      <DependentUpon>FrmStorageItem.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FrmTest.resx">
+      <DependentUpon>FrmTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ListViewStorage.resx">
+      <DependentUpon>ListViewStorage.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\MyTextBox.resx">
+      <DependentUpon>MyTextBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="UI\TreeViewQuickList.resx">
+      <DependentUpon>TreeViewQuickList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\TreeViewRef.resx">
+      <DependentUpon>TreeViewRef.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="App.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="UI\FrmNewWorkSpace.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmNewWorkSpace.Designer.cs">
+      <DependentUpon>FrmNewWorkSpace.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\CtrlSearchContentProgress.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\CtrlSearchContentProgress.Designer.cs">
+      <DependentUpon>CtrlSearchContentProgress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FrmStorageItem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmStorageItem.Designer.cs">
+      <DependentUpon>FrmStorageItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ListViewStorage.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\ListViewStorage.Designer.cs">
+      <DependentUpon>ListViewStorage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\MyTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\MyTextBox.Designer.cs">
+      <DependentUpon>MyTextBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\TreeViewQuickList.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\TreeViewQuickList.Designer.cs">
+      <DependentUpon>TreeViewQuickList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\TreeViewRef.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\TreeViewRef.Designer.cs">
+      <DependentUpon>TreeViewRef.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\TreeViewWorkSpace.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\TreeViewWorkSpace.Designer.cs">
+      <DependentUpon>TreeViewWorkSpace.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="e.ico" />
+    <Content Include="Images\Clear.bmp" />
+    <Content Include="Images\clear.png" />
+    <Content Include="Images\forward.png" />
+    <Content Include="Images\back.png" />
+    <Content Include="Images\paste.bmp" />
+    <Content Include="Images\yellowClosedFolder.png" />
+    <Content Include="Images\Item.bmp" />
+    <Content Include="Images\Folder.bmp" />
+    <Content Include="Images\FolderClosed.bmp" />
+    <None Include="Resources\PayPal_mark_37x23.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DAL\" />
+    <Folder Include="DLLs\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

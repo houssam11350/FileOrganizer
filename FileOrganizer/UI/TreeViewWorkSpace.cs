@@ -91,6 +91,7 @@ namespace FileOrganizer.UI
             node.Text = pWorkSpace.s_WName;
             node.Tag = pWorkSpace;
             node.WorkSpace = pWorkSpace;
+            node.Checked = pWorkSpace.IsActive;
 
             this.Nodes.Add(node);
         }

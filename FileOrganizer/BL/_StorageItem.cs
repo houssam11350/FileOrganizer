@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -47,7 +47,7 @@ namespace FileOrganizer.BL
             if (_insertCommand == null)
             {
                 _insertCommand = MyDbConnection.Instance.connection.CreateCommand();
-                _insertCommand.CommandText = "INSERT INTO StorageItem ([WorkSpaceID],[ItemName],[Size],[Description],[URL],[FullPath],[Priority],[PagesCount],[IsFixed],[Citation],[ReferenceBib],[ImportantParts],[AdditionDate],[NoteItemID])VALUES (@WorkSpaceID,@ItemName,@Size,@Description,@URL,@FullPath,@Priority,@PagesCount,@IsFixed,@Citation,@ReferenceBib,@ImportantParts,@AdditionDate,@NoteItemID)";
+                _insertCommand.CommandText = "INSERT INTO StorageItem ([WorkSpaceID],[ItemName],[Size],[Description],[URL],[FullPath],[Priority],[PagesCount],[Citation],[ReferenceBib],[ImportantParts],[AdditionDate],[NoteItemID])VALUES (@WorkSpaceID,@ItemName,@Size,@Description,@URL,@FullPath,@Priority,@PagesCount,@Citation,@ReferenceBib,@ImportantParts,@AdditionDate,@NoteItemID)";
                 _insertCommand.CommandType = CommandType.Text;
                 CreateParams(_insertCommand);
 
@@ -65,7 +65,6 @@ namespace FileOrganizer.BL
             command.Parameters.Add(new SQLiteParameter(ColumnNames.FullPath, DbType.String, 2147483647, ColumnNames.FullPath));
             command.Parameters.Add(new SQLiteParameter(ColumnNames.Priority, DbType.Int64, 8, ColumnNames.Priority));
             command.Parameters.Add(new SQLiteParameter(ColumnNames.PagesCount, DbType.Int64, 8, ColumnNames.PagesCount));
-            command.Parameters.Add(new SQLiteParameter(ColumnNames.IsFixed, DbType.Boolean, 1, ColumnNames.IsFixed));
             command.Parameters.Add(new SQLiteParameter(ColumnNames.Citation, DbType.String, 2147483647, ColumnNames.Citation));
             command.Parameters.Add(new SQLiteParameter(ColumnNames.ReferenceBib, DbType.String, 2147483647, ColumnNames.ReferenceBib));
             command.Parameters.Add(new SQLiteParameter(ColumnNames.ImportantParts, DbType.String, 2147483647, ColumnNames.ImportantParts));
@@ -77,7 +76,7 @@ namespace FileOrganizer.BL
             if (_updateCommand == null)
             {
                 _updateCommand = MyDbConnection.Instance.connection.CreateCommand();
-                _updateCommand.CommandText = "UPDATE StorageItem SET [WorkSpaceID] = @WorkSpaceID,[ItemName] = @ItemName,[Size] = @Size,[Description] = @Description,[URL] = @URL,[FullPath] = @FullPath,[Priority] = @Priority,[PagesCount] = @PagesCount,[IsFixed] = @IsFixed,[Citation] = @Citation,[ReferenceBib] = @ReferenceBib,[ImportantParts] = @ImportantParts,[AdditionDate] = @AdditionDate,[NoteItemID] = @NoteItemID WHERE ([ID] = @ID)";
+                _updateCommand.CommandText = "UPDATE StorageItem SET [WorkSpaceID] = @WorkSpaceID,[ItemName] = @ItemName,[Size] = @Size,[Description] = @Description,[URL] = @URL,[FullPath] = @FullPath,[Priority] = @Priority,[PagesCount] = @PagesCount,[Citation] = @Citation,[ReferenceBib] = @ReferenceBib,[ImportantParts] = @ImportantParts,[AdditionDate] = @AdditionDate,[NoteItemID] = @NoteItemID WHERE ([ID] = @ID)";
                 _updateCommand.CommandType = CommandType.Text;
                 CreateParams(_updateCommand);
             }
@@ -212,7 +211,6 @@ namespace FileOrganizer.BL
             public const string FullPath = "FullPath";
             public const string Priority = "Priority";
             public const string PagesCount = "PagesCount";
-            public const string IsFixed = "IsFixed";
             public const string Citation = "Citation";
             public const string ReferenceBib = "ReferenceBib";
             public const string ImportantParts = "ImportantParts";
@@ -293,14 +291,6 @@ namespace FileOrganizer.BL
                 get
                 {
                     return new SQLiteParameter(StorageItemDT.ColumnNames.PagesCount, DbType.Int64, 8);
-                }
-            }
-
-            public static SQLiteParameter IsFixed
-            {
-                get
-                {
-                    return new SQLiteParameter(StorageItemDT.ColumnNames.IsFixed, DbType.Boolean, 1);
                 }
             }
 
@@ -411,7 +401,6 @@ namespace FileOrganizer.BL
             command.Parameters[StorageItemDT.ColumnNames.FullPath].Value = base[StorageItemDT.ColumnNames.FullPath];
             command.Parameters[StorageItemDT.ColumnNames.Priority].Value = base[StorageItemDT.ColumnNames.Priority];
             command.Parameters[StorageItemDT.ColumnNames.PagesCount].Value = base[StorageItemDT.ColumnNames.PagesCount];
-            command.Parameters[StorageItemDT.ColumnNames.IsFixed].Value = base[StorageItemDT.ColumnNames.IsFixed];
             command.Parameters[StorageItemDT.ColumnNames.Citation].Value = base[StorageItemDT.ColumnNames.Citation];
             command.Parameters[StorageItemDT.ColumnNames.ReferenceBib].Value = base[StorageItemDT.ColumnNames.ReferenceBib];
             command.Parameters[StorageItemDT.ColumnNames.ImportantParts].Value = base[StorageItemDT.ColumnNames.ImportantParts];
@@ -537,18 +526,6 @@ namespace FileOrganizer.BL
             set
             {
                 base[StorageItemDT.ColumnNames.PagesCount] = value;
-            }
-        }
-
-        public virtual bool IsFixed
-        {
-            get
-            {
-                return (bool)base[StorageItemDT.ColumnNames.IsFixed];
-            }
-            set
-            {
-                base[StorageItemDT.ColumnNames.IsFixed] = value;
             }
         }
 
@@ -748,21 +725,6 @@ namespace FileOrganizer.BL
                     this[StorageItemDT.ColumnNames.PagesCount] = DBNull.Value;
                 else
                     base[StorageItemDT.ColumnNames.PagesCount] = Convert.ToInt64(value);
-            }
-        }
-
-        public virtual string s_IsFixed
-        {
-            get
-            {
-                return this.IsNull(StorageItemDT.ColumnNames.IsFixed) ? string.Empty : base[StorageItemDT.ColumnNames.IsFixed].ToString();
-            }
-            set
-            {
-                if (string.Empty == value)
-                    this[StorageItemDT.ColumnNames.IsFixed] = DBNull.Value;
-                else
-                    base[StorageItemDT.ColumnNames.IsFixed] = Convert.ToBoolean(value);
             }
         }
 

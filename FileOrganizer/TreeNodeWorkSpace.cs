@@ -23,21 +23,21 @@ namespace FileOrganizer
         }
 
         
-        public void PutColorAsChecked()
-        {
-            if (this.Checked)
-            {
+        //public void PutColorAsChecked()
+        //{
+        //    if (this.Checked)
+        //    {
 
-                this.BackColor = SystemColors.Highlight;
-                this.ForeColor = SystemColors.Window;
-            }
-            else
-            {
-                this.BackColor = SystemColors.Window;
-                this.ForeColor = SystemColors.WindowText;
-            }
+        //        this.BackColor = SystemColors.Highlight;
+        //        this.ForeColor = SystemColors.Window;
+        //    }
+        //    else
+        //    {
+        //        this.BackColor = SystemColors.Window;
+        //        this.ForeColor = SystemColors.WindowText;
+        //    }
 
 
-        }
+        //}
     }
 }

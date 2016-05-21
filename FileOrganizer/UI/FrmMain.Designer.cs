@@ -66,7 +66,6 @@ namespace FileOrganizer.UI
             this.mnuItemOpenNote = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuItemRemoveNote = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator23 = new System.Windows.Forms.ToolStripSeparator();
-            this.mnuItemFix = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuItemAddToReport = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuStripRef = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mnuItemOpenRef = new System.Windows.Forms.ToolStripMenuItem();
@@ -85,6 +84,7 @@ namespace FileOrganizer.UI
             this.minimizeToTrayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuItemCheckForUpdate = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMain = new System.Windows.Forms.ToolStrip();
             this.tsbCategories = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator16 = new System.Windows.Forms.ToolStripSeparator();
@@ -123,7 +123,6 @@ namespace FileOrganizer.UI
             this.splitContainerStorageItem = new System.Windows.Forms.SplitContainer();
             this.chkShowHint = new System.Windows.Forms.CheckBox();
             this.txtMainStorageItemDesc2 = new System.Windows.Forms.TextBox();
-            this.chkClearPrevResult = new System.Windows.Forms.CheckBox();
             this.btnEmptyList = new System.Windows.Forms.Button();
             this.lblReportListCount = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
@@ -168,7 +167,6 @@ namespace FileOrganizer.UI
             this.mnuItemEditQListInfo = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuItemDeleteQList = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.mnuItemCheckForUpdate = new System.Windows.Forms.ToolStripMenuItem();
             this.tvWorkSpace = new FileOrganizer.UI.TreeViewWorkSpace();
             this.treeViewAllQuickList = new FileOrganizer.UI.TreeViewAllQuickList();
             this.tvRef = new FileOrganizer.UI.TreeViewRef();
@@ -197,6 +195,7 @@ namespace FileOrganizer.UI
             this.colReferencesBib = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colImportantParts = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colAdditionDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.btnDoSearch = new System.Windows.Forms.Button();
             this.mnuStripWorkSpace.SuspendLayout();
             this.mnuStripStorageItem.SuspendLayout();
             this.mnuStripRef.SuspendLayout();
@@ -313,10 +312,9 @@ namespace FileOrganizer.UI
             this.toolStripSeparator19,
             this.muuItemNote,
             this.toolStripSeparator23,
-            this.mnuItemFix,
             this.mnuItemAddToReport});
             this.mnuStripStorageItem.Name = "mnuStripStorageItem";
-            this.mnuStripStorageItem.Size = new System.Drawing.Size(207, 470);
+            this.mnuStripStorageItem.Size = new System.Drawing.Size(207, 448);
             this.mnuStripStorageItem.Opening += new System.ComponentModel.CancelEventHandler(this.mnuStripStorageItem_Opening);
             // 
             // mnuItemOpenStorageItem
@@ -502,13 +500,6 @@ namespace FileOrganizer.UI
             this.toolStripSeparator23.Name = "toolStripSeparator23";
             this.toolStripSeparator23.Size = new System.Drawing.Size(203, 6);
             // 
-            // mnuItemFix
-            // 
-            this.mnuItemFix.Name = "mnuItemFix";
-            this.mnuItemFix.Size = new System.Drawing.Size(206, 22);
-            this.mnuItemFix.Text = "Fix";
-            this.mnuItemFix.Click += new System.EventHandler(this.mnuItemFix_Click);
-            // 
             // mnuItemAddToReport
             // 
             this.mnuItemAddToReport.Name = "mnuItemAddToReport";
@@ -652,6 +643,13 @@ namespace FileOrganizer.UI
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            // 
+            // mnuItemCheckForUpdate
+            // 
+            this.mnuItemCheckForUpdate.Name = "mnuItemCheckForUpdate";
+            this.mnuItemCheckForUpdate.Size = new System.Drawing.Size(166, 22);
+            this.mnuItemCheckForUpdate.Text = "Check for Update";
+            this.mnuItemCheckForUpdate.Click += new System.EventHandler(this.mnuItemCheckForUpdate_Click);
             // 
             // toolStripMain
             // 
@@ -1085,9 +1083,9 @@ namespace FileOrganizer.UI
             // splitContainerStorageItem.Panel1
             // 
             this.splitContainerStorageItem.Panel1.BackColor = System.Drawing.SystemColors.Control;
+            this.splitContainerStorageItem.Panel1.Controls.Add(this.btnDoSearch);
             this.splitContainerStorageItem.Panel1.Controls.Add(this.chkShowHint);
             this.splitContainerStorageItem.Panel1.Controls.Add(this.txtMainStorageItemDesc2);
-            this.splitContainerStorageItem.Panel1.Controls.Add(this.chkClearPrevResult);
             this.splitContainerStorageItem.Panel1.Controls.Add(this.btnEmptyList);
             this.splitContainerStorageItem.Panel1.Controls.Add(this.lblReportListCount);
             this.splitContainerStorageItem.Panel1.Controls.Add(this.label14);
@@ -1156,19 +1154,9 @@ namespace FileOrganizer.UI
             this.txtMainStorageItemDesc2.Size = new System.Drawing.Size(71, 129);
             this.txtMainStorageItemDesc2.TabIndex = 43;
             // 
-            // chkClearPrevResult
-            // 
-            this.chkClearPrevResult.AutoSize = true;
-            this.chkClearPrevResult.Location = new System.Drawing.Point(527, 126);
-            this.chkClearPrevResult.Name = "chkClearPrevResult";
-            this.chkClearPrevResult.Size = new System.Drawing.Size(108, 17);
-            this.chkClearPrevResult.TabIndex = 42;
-            this.chkClearPrevResult.Text = "Clear Prev Result";
-            this.chkClearPrevResult.UseVisualStyleBackColor = true;
-            // 
             // btnEmptyList
             // 
-            this.btnEmptyList.Location = new System.Drawing.Point(437, 123);
+            this.btnEmptyList.Location = new System.Drawing.Point(521, 122);
             this.btnEmptyList.Name = "btnEmptyList";
             this.btnEmptyList.Size = new System.Drawing.Size(76, 22);
             this.btnEmptyList.TabIndex = 41;
@@ -1558,13 +1546,6 @@ namespace FileOrganizer.UI
             this.mnuItemDeleteQList.Text = "Delete Q List";
             this.mnuItemDeleteQList.Click += new System.EventHandler(this.mnuItemDeleteQList_Click);
             // 
-            // mnuItemCheckForUpdate
-            // 
-            this.mnuItemCheckForUpdate.Name = "mnuItemCheckForUpdate";
-            this.mnuItemCheckForUpdate.Size = new System.Drawing.Size(166, 22);
-            this.mnuItemCheckForUpdate.Text = "Check for Update";
-            this.mnuItemCheckForUpdate.Click += new System.EventHandler(this.mnuItemCheckForUpdate_Click);
-            // 
             // tvWorkSpace
             // 
             this.tvWorkSpace.AllowDrop = true;
@@ -1835,6 +1816,16 @@ namespace FileOrganizer.UI
             // 
             this.colAdditionDate.Text = "Add Date";
             // 
+            // btnDoSearch
+            // 
+            this.btnDoSearch.Location = new System.Drawing.Point(439, 122);
+            this.btnDoSearch.Name = "btnDoSearch";
+            this.btnDoSearch.Size = new System.Drawing.Size(76, 22);
+            this.btnDoSearch.TabIndex = 45;
+            this.btnDoSearch.Text = "Search";
+            this.btnDoSearch.UseVisualStyleBackColor = true;
+            this.btnDoSearch.Click += new System.EventHandler(this.btnDoSearch_Click);
+            // 
             // FrmMain
             // 
             this.AllowDrop = true;
@@ -1996,7 +1987,6 @@ namespace FileOrganizer.UI
         private ToolStripSeparator toolStripSeparator18;
         private ToolStripMenuItem mnuItemOpenFolder;
         private ToolStripSeparator toolStripSeparator19;
-        private ToolStripMenuItem mnuItemFix;
         public CheckBox chkAllowLstStorageMultiSelect;
         private Panel panel1;
         private Panel panel2;
@@ -2047,7 +2037,6 @@ namespace FileOrganizer.UI
         private Label lblReportListCount;
         private Label label14;
         private Button btnEmptyList;
-        public CheckBox chkClearPrevResult;
         private ToolStripMenuItem mnuItemOpenCopy;
         private NotifyIcon notifyIcon;
         private TextBox txtMainStorageItemDesc2;
@@ -2082,6 +2071,7 @@ namespace FileOrganizer.UI
         private ToolTip toolTip1;
         private TreeViewAllQuickList treeViewAllQuickList;
         private ToolStripMenuItem mnuItemCheckForUpdate;
+        private Button btnDoSearch;
     }
 }
 

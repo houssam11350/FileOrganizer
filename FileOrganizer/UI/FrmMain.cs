@@ -133,7 +133,7 @@ namespace FileOrganizer.UI
                 node.Tag = workSpace;
                 node.WorkSpace = workSpace;
                 node.Checked = workSpace.IsActive;
-                node.PutColorAsChecked();
+                //node.PutColorAsChecked();
                 tvWorkSpace.Nodes.Add(node);
             }
 
@@ -664,7 +664,7 @@ namespace FileOrganizer.UI
             //this.Text = DateTime.Now.Millisecond.ToString();
             //DisplayStorageItems();
             TreeNodeWorkSpace node = (TreeNodeWorkSpace)e.Node;
-            node.PutColorAsChecked();
+            //node.PutColorAsChecked();
 
         }
 
@@ -840,14 +840,14 @@ namespace FileOrganizer.UI
 
         private void DisplayTotalCount()
         {
-            int lFixedItemsCount = lstStorageItem.GetFixedItemsCount();
-            int lNonFixedItemsCount = lstStorageItem.Items.Count - lFixedItemsCount;
+            //int lFixedItemsCount = lstStorageItem.GetFixedItemsCount();
+            //  int lNonFixedItemsCount = lstStorageItem.Items.Count - lFixedItemsCount;
 
-            string sFixedItems = string.Format("Fixed={0}", lFixedItemsCount);
-            string sNonFixedItems = string.Format("Non Fixed={0}", lNonFixedItemsCount);
+            // string sFixedItems = string.Format("Fixed={0}", lFixedItemsCount);
+            // string sNonFixedItems = string.Format("Non Fixed={0}", lNonFixedItemsCount);
             string sTotalItems = string.Format("Total Items={0}", lstStorageItem.Items.Count);
 
-            sslTotal.Text = string.Format("{0} , {1} , {2}", sFixedItems, sNonFixedItems, sTotalItems);
+            sslTotal.Text = string.Format("{0}", sTotalItems);
         }
 
 
@@ -1189,36 +1189,23 @@ namespace FileOrganizer.UI
             // string sss = storageItem.Query.GenerateSQL();
             AddOrderBy_OrderType_ToQuery(storageItem);
 
-            lstStorageItem.ClearItemsToDisplayNewSearchResult(chkClearPrevResult.Checked);
+            lstStorageItem.Items.Clear();
 
             //string ss = storageItem.Query.GenerateSQL();
-            int fixedCountInQueryResult = 0;
-            int nonFixedCountInQueryResult = 0;
+            //int fixedCountInQueryResult = 0;
+            //int nonFixedCountInQueryResult = 0;
             bool isLstStorageEmptyBeforeQuery = lstStorageItem.Items.Count == 0;
             storageItem.Query.Load();
             if (storageItem.Rows.Count > 0)
             {
-
                 //lstStorageItem.ClearUnFixedItems();
                 //List<StorageItem> theResultList = storageItem.AsList();
                 FilterResults(storageItem);
-
                 for (int i = storageItem.Rows.Count - 1; i >= 0; i--)
                 {
                     StorageItemRow sItem = storageItem[i];
-                    if (sItem.IsFixed)
-                    {
-                        fixedCountInQueryResult++;
-                        if (isLstStorageEmptyBeforeQuery)
-                            lstStorageItem.AddNewStorageItem(sItem, Color.Lavender, false);
-                        else
-                            lstStorageItem.EnsureHasItem(sItem.ID, Color.Lavender, true, false);
-                    }
-                    else
-                    {
-                        nonFixedCountInQueryResult++;
-                        lstStorageItem.AddNewStorageItem(sItem);
-                    }
+                    //nonFixedCountInQueryResult++;
+                    lstStorageItem.AddNewStorageItem(sItem);
                 }
 
                 SelectLastViewedStorageItem();
@@ -1552,7 +1539,7 @@ namespace FileOrganizer.UI
         {
 
             foreach (ListViewStorageItem item in lstStorageItem.Items)
-                item.SetColorToDefault();
+                item.BackColor = SystemColors.Window;
 
             ctrlSearchContentProgress.DoStop();
             ctrlSearchContentProgress.ListView = this.lstStorageItem;
@@ -2009,7 +1996,7 @@ namespace FileOrganizer.UI
         private void tvWorkSpace_AfterCheck(object sender, TreeViewEventArgs e)
         {
             TreeNodeWorkSpace treeNodeWorkSpace = (TreeNodeWorkSpace)e.Node;
-            treeNodeWorkSpace.PutColorAsChecked();
+            //treeNodeWorkSpace.PutColorAsChecked();
             treeNodeWorkSpace.WorkSpace.IsActive = treeNodeWorkSpace.Checked;
             treeNodeWorkSpace.WorkSpace.Save();
             DOSearch();
@@ -2034,7 +2021,7 @@ namespace FileOrganizer.UI
             foreach (ListViewStorageItem listViewStorageItem in lstStorageItem.Items)
             {
                 if (listViewStorageItem.BackColor == myColor)
-                    listViewStorageItem.SetColorToDefault();
+                    listViewStorageItem.BackColor = SystemColors.Window;
 
                 if (listViewStorageItem.StorageItem.ID == ctrlReferenceNavigator.CurrentStorageItemID)
                 {
@@ -2131,7 +2118,8 @@ namespace FileOrganizer.UI
                 //DisplayReferenceView(lRefStorageItem);
                 DisplayReferenceView(frmReferenceDrag.RefStorageItem);
             }
-            dragToItem.SetColorToDefaultWithForGround();
+            dragToItem.BackColor = SystemColors.Window;
+            dragToItem.ForeColor = SystemColors.WindowText;
 
         }
 
@@ -2192,15 +2180,7 @@ namespace FileOrganizer.UI
             }
         }
 
-        private void mnuItemFix_Click(object sender, EventArgs e)
-        {
-            if (lstStorageItem.SelectedItems.Count == 0)
-                return;
-            ListViewStorageItem listViewStorageItem = (ListViewStorageItem)lstStorageItem.SelectedItems[0];
-            lstStorageItem.FixUnFixItemAt(listViewStorageItem.Index);
-            DisplayTotalCount();
-
-        }
+ 
 
         private void mnuItemRemoveNote_Click(object sender, EventArgs e)
         {
@@ -2276,7 +2256,7 @@ namespace FileOrganizer.UI
 
         private void mnuStripStorageItem_Opening(object sender, CancelEventArgs e)
         {
-            HanleFixMenuItem();
+            //HanleFixMenuItem();
             bool isEnabled = lstStorageItem.SelectedItems.Count > 0;
             foreach (ToolStripItem item in mnuStripStorageItem.Items)
             {
@@ -2288,17 +2268,7 @@ namespace FileOrganizer.UI
                                 mStorageItemCopier.SourceList.Count != 0;
         }
 
-        private void HanleFixMenuItem()
-        {
-            if (lstStorageItem.SelectedItems.Count == 0)
-                return;
-            ListViewStorageItem listViewStorageItem = (ListViewStorageItem)lstStorageItem.SelectedItems[0];
-
-            if (listViewStorageItem.StorageItem.IsFixed)
-                mnuItemFix.Text = "Remove From Fixed ";
-            else
-                mnuItemFix.Text = "Fix";
-        }
+       
 
         private void mnuFileNew_Click(object sender, EventArgs e)
         {
@@ -2916,7 +2886,7 @@ namespace FileOrganizer.UI
 
                         TreeNode lastNode = tvWorkSpace.Nodes[tvWorkSpace.Nodes.Count - 1];
                         tvWorkSpace.SelectedNode = lastNode;
-                        mnuStripWorkSpace.Show(this, lastNode.Bounds.Location);
+                        mnuStripWorkSpace.Show(tvWorkSpace, lastNode.Bounds.Location);
                     }
                     else
                     {
@@ -3038,6 +3008,11 @@ namespace FileOrganizer.UI
 
 
 
+        }
+
+        private void btnDoSearch_Click(object sender, EventArgs e)
+        {
+            DOSearch();
         }
 
     }

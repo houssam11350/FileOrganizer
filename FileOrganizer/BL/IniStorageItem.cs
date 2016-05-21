@@ -89,7 +89,7 @@ namespace FileOrganizer.BL
             WriteValue(mFrmMain.splitContainerSiteGroup.Name, mFrmMain.splitContainerSiteGroup.SplitterDistance.ToString());
             WriteValue(mFrmMain.ctrlReferenceNavigator.Name, mFrmMain.ctrlReferenceNavigator.GetStorageItemIDsAsString());
             WriteValue(mFrmMain.chkAllowLstStorageMultiSelect.Name, mFrmMain.chkAllowLstStorageMultiSelect.Checked.ToString());
-            WriteValue(mFrmMain.chkClearPrevResult.Name, mFrmMain.chkClearPrevResult.Checked.ToString());
+            //WriteValue(mFrmMain.chkClearPrevResult.Name, mFrmMain.chkClearPrevResult.Checked.ToString());
             WriteValue(mFrmMain.chkSearchInAllCategories.Name, mFrmMain.chkSearchInAllCategories.Checked.ToString());
             WriteValue(mFrmMain.splitContainerSimilarItems.Name, mFrmMain.splitContainerSimilarItems.SplitterDistance.ToString());
             WriteValue(mFrmMain.splitContainerGroupStorage.Name, mFrmMain.splitContainerGroupStorage.SplitterDistance.ToString());
@@ -161,7 +161,7 @@ namespace FileOrganizer.BL
                 mFrmMain.ctrlReferenceNavigator.PutPositionForStorageItemID(lMainStorageItemID);
 
             mFrmMain.chkAllowLstStorageMultiSelect.Checked = bool.Parse(ReadValueAsString(mFrmMain.chkAllowLstStorageMultiSelect.Name));
-            mFrmMain.chkClearPrevResult.Checked = bool.Parse(ReadValueAsString(mFrmMain.chkClearPrevResult.Name));
+            //mFrmMain.chkClearPrevResult.Checked = bool.Parse(ReadValueAsString(mFrmMain.chkClearPrevResult.Name));
             mFrmMain.chkSearchInAllCategories.Checked = bool.Parse(ReadValueAsString(mFrmMain.chkSearchInAllCategories.Name));
             mFrmMain.splitContainerSimilarItems.SplitterDistance = ReadValueAsInt(mFrmMain.splitContainerSimilarItems.Name);
             mFrmMain.splitContainerGroupStorage.SplitterDistance = ReadValueAsInt(mFrmMain.splitContainerGroupStorage.Name);

@@ -87,7 +87,6 @@ namespace FileOrganizer.UI
                 txtPagesCount.Text = "0";
             mStorageItem.PagesCount = int.Parse(txtPagesCount.Text);
             mStorageItem.Description = txtDescription.Text;
-            mStorageItem.IsFixed = chkIsFixed.Checked;
             mStorageItem.Citation = txtCitation.Text;
             mStorageItem.ReferenceBib = txtReferencesBib.Text;
             mStorageItem.ImportantParts = txtImportantParts.Text;
@@ -110,7 +109,6 @@ namespace FileOrganizer.UI
             txtPagesCount.Text = mStorageItem.s_PagesCount;
             txtDescription.Text = mStorageItem.s_Description;
             lstCategory.SelectedValue = mStorageItem.WorkSpaceID;
-            chkIsFixed.Checked = mStorageItem.IsFixed;
             txtCitation.Text = mStorageItem.s_Citation;
             txtReferencesBib.Text = mStorageItem.s_ReferenceBib;
             txtImportantParts.Text = mStorageItem.s_ImportantParts;
@@ -242,6 +240,7 @@ namespace FileOrganizer.UI
 
         private void FrmStorageItem_Load(object sender, EventArgs e)
         {
+            btnGetURL.Visible = Options.GetInstance().IsIDM;
             pkrAdditionDate.Value = DateTime.Now;
             //BringToFront("Notepad", "Untitled - Notepad");
             //BringToFront("Notepad", this.Text);

@@ -49,7 +49,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.txtPagesCount = new System.Windows.Forms.TextBox();
             this.lblCategory = new System.Windows.Forms.Label();
-            this.chkIsFixed = new System.Windows.Forms.CheckBox();
             this.lstCategory = new System.Windows.Forms.ListBox();
             this.btnCalcSizeName = new System.Windows.Forms.Button();
             this.btnOpen = new System.Windows.Forms.Button();
@@ -318,19 +317,6 @@
             this.lblCategory.TabIndex = 2;
             this.lblCategory.Text = "Category";
             // 
-            // chkIsFixed
-            // 
-            this.chkIsFixed.AutoSize = true;
-            this.chkIsFixed.Cursor = System.Windows.Forms.Cursors.Default;
-            this.chkIsFixed.Font = new System.Drawing.Font("Tahoma", 8F);
-            this.chkIsFixed.Location = new System.Drawing.Point(74, 540);
-            this.chkIsFixed.Name = "chkIsFixed";
-            this.chkIsFixed.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.chkIsFixed.Size = new System.Drawing.Size(64, 17);
-            this.chkIsFixed.TabIndex = 11;
-            this.chkIsFixed.Text = "Is Fixed";
-            this.chkIsFixed.UseVisualStyleBackColor = true;
-            // 
             // lstCategory
             // 
             this.lstCategory.FormattingEnabled = true;
@@ -494,7 +480,6 @@
             this.Controls.Add(this.btnGetURL);
             this.Controls.Add(this.btnCalcSizeName);
             this.Controls.Add(this.lstCategory);
-            this.Controls.Add(this.chkIsFixed);
             this.Controls.Add(this.txtImportantParts);
             this.Controls.Add(this.txtReferencesBib);
             this.Controls.Add(this.txtCitation);
@@ -561,7 +546,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtPagesCount;
         private System.Windows.Forms.Label lblCategory;
-        private System.Windows.Forms.CheckBox chkIsFixed;
         private System.Windows.Forms.ListBox lstCategory;
         private System.Windows.Forms.Button btnCalcSizeName;
         private System.Windows.Forms.Button btnOpen;

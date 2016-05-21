@@ -86,14 +86,17 @@ namespace FileOrganizer.UI
             //if (endIdx == -1)
             //    endIdx = this.Items.Count;
 
-            int startIdx = GetPreviousItemIndex(pTargetItem, 3);
-            int endIdx = GetNextItemIndex(pTargetItem, 3);
+            
+
+            int startIdx = GetPreviousItemIndex(pTargetItem, 20);
+            int endIdx = GetNextItemIndex(pTargetItem, 20);
 
             for (int index = startIdx; index <= endIdx; index++)
             {
                 if (Items[index] != pTargetItem)
                 {
-                    ((ListViewStorageItem)Items[index]).SetColorToDefault(); ;
+                    // ((ListViewStorageItem)Items[index]).SetColorToDefault(); 
+                    Items[index].BackColor = SystemColors.Window;
                     Items[index].ForeColor = SystemColors.WindowText;
                 }
 
@@ -115,10 +118,6 @@ namespace FileOrganizer.UI
             //pTargetItem.ForeColor = SystemColors.Window;
             this.ResumeLayout(false);
             this.PerformLayout();
-
-
-
-
         }
 
         private int GetPreviousItemIndex(ListViewItem pTargetItem, int pOffSet)
@@ -127,7 +126,6 @@ namespace FileOrganizer.UI
             int prevIndex = index - pOffSet;
             if (prevIndex < 0)
                 prevIndex = 0;
-
 
             return prevIndex;
         }
@@ -176,10 +174,10 @@ namespace FileOrganizer.UI
             pListViewItem.StorageItem = pStorageItem;
             // item.ImageIndex = GetImageIndexForExtension(GetExtensionForStorageItem(sItem)); ;
             pListViewItem.ImageIndex = mSysIcons.GetIconIndex(pStorageItem.GetPathIconForStorageItem());
-            if (pStorageItem.IsFixed)
-                pListViewItem.BackColor = mFixedItemBackColor;
-            else
-                pListViewItem.BackColor = mUnFixedItemBackColor;
+            //if (pStorageItem.IsFixed)
+            //    pListViewItem.BackColor = mFixedItemBackColor;
+            //else
+            //    pListViewItem.BackColor = mUnFixedItemBackColor;
 
             pListViewItem.ToolTipText = pStorageItem.s_Description;
 
@@ -191,8 +189,8 @@ namespace FileOrganizer.UI
         public ListViewStorageItem AddNewStorageItem(long pStorageItemID)
         {
             StorageItemDT storageItem = new StorageItemDT();
-            storageItem.Query.AddWhereParameter(StorageItemDT.ColumnNames.ID , MyOperand.Equal , 
-                StorageItemDT.Parameters.ID ,  pStorageItemID);
+            storageItem.Query.AddWhereParameter(StorageItemDT.ColumnNames.ID, MyOperand.Equal,
+                StorageItemDT.Parameters.ID, pStorageItemID);
             if (storageItem.Query.Load())
             {
                 ListViewStorageItem item = GetListViewItemFromStorageItem(storageItem[0]);
@@ -208,7 +206,7 @@ namespace FileOrganizer.UI
             return item;
         }
 
-        public ListViewStorageItem AddNewStorageItem(StorageItemRow pStorageItem, Color pColor , bool pIsEnsueVisible)
+        public ListViewStorageItem AddNewStorageItem(StorageItemRow pStorageItem, Color pColor, bool pIsEnsueVisible)
         {
             ListViewStorageItem newListViewStorageItem = this.GetListViewItemFromStorageItem(pStorageItem);
             newListViewStorageItem.BackColor = pColor;
@@ -218,7 +216,7 @@ namespace FileOrganizer.UI
             return newListViewStorageItem;
         }
 
-        public ListViewStorageItem AddNewStorageItem(long pStorageItemID, Color pColor  ,bool pIsEnsueVisible)
+        public ListViewStorageItem AddNewStorageItem(long pStorageItemID, Color pColor, bool pIsEnsueVisible)
         {
             StorageItemDT lStorageItem = new StorageItemDT();
             ListViewStorageItem newListViewStorageItem = null;
@@ -227,7 +225,7 @@ namespace FileOrganizer.UI
                 newListViewStorageItem = this.GetListViewItemFromStorageItem(lStorageItem[0]);
                 newListViewStorageItem.BackColor = pColor;
                 this.Items.Add(newListViewStorageItem);
-                if(pIsEnsueVisible)
+                if (pIsEnsueVisible)
                     newListViewStorageItem.EnsureVisible();
             }
 
@@ -244,7 +242,7 @@ namespace FileOrganizer.UI
                 if (!pAllowMultiple)
                 {
                     if (item.BackColor == pColor)
-                        item.SetColorToDefault();
+                        item.BackColor = SystemColors.Window ;
                 }
 
                 if (pStorageItemID == item.StorageItem.ID)
@@ -258,7 +256,7 @@ namespace FileOrganizer.UI
 
             if (!isFound)
             {
-                lTheItem = AddNewStorageItem(pStorageItemID, pColor , pIsEnsueVisible);
+                lTheItem = AddNewStorageItem(pStorageItemID, pColor, pIsEnsueVisible);
             }
 
             return lTheItem;
@@ -293,77 +291,12 @@ namespace FileOrganizer.UI
         {
             foreach (ListViewStorageItem item in this.Items)
             {
-                if (item.StorageItem.IsFixed)
-                    item.BackColor = mFixedItemBackColor;
-                else
-                    item.BackColor = pColor;
+                //if (item.StorageItem.IsFixed)
+                //    item.BackColor = mFixedItemBackColor;
+                //else
+                item.BackColor = pColor;
 
             }
-        }
-
-        public void ClearItemsToDisplayNewSearchResult(bool pIsClearPrevResult)
-        {
-            if (pIsClearPrevResult)
-            {
-                this.Items.Clear();
-                return;
-            }
-            for (int index = this.Items.Count - 1; index >= 0; index--)
-            {
-                ListViewStorageItem item = (ListViewStorageItem)this.Items[index];
-                if (item.StorageItem.IsFixed)
-                    item.SetColorToDefault();
-                else
-                    this.Items.RemoveAt(index);
-
-            }
-        }
-
-        public void FixUnFixItemAt(int pIndex)
-        {
-            ListViewStorageItem listViewStorageItem = (ListViewStorageItem)Items[pIndex];
-            listViewStorageItem.StorageItem.IsFixed = !listViewStorageItem.StorageItem.IsFixed;
-            listViewStorageItem.StorageItem.Save();
-            if (listViewStorageItem.StorageItem.IsFixed)
-            {
-                listViewStorageItem.BackColor = mFixedItemBackColor;
-                //mFixedItemList.Add(listViewStorageItem);
-            }
-            else
-            {
-                listViewStorageItem.BackColor = mUnFixedItemBackColor;
-                // mFixedItemList.Remove(listViewStorageItem);
-            }
-        }
-
-
-        public string GetFixedIDsAsString()
-        {
-            List<string> lIDsList = new List<string>();
-            foreach (ListViewStorageItem item in Items)
-            {
-                if (item.StorageItem.IsFixed)
-                {
-                    lIDsList.Add(item.StorageItem.s_ID);
-                }
-            }
-            return string.Join(",", lIDsList.ToArray());
-        }
-
-
-
-        public int GetFixedItemsCount()
-        {
-            int lFixedItemsCount = 0;
-            foreach (ListViewStorageItem item in Items)
-            {
-                if (item.StorageItem.IsFixed)
-                {
-                    lFixedItemsCount++;
-                }
-
-            }
-            return lFixedItemsCount;
         }
 
         public List<ListViewStorageItem> GetSelectedListViewStorageItems()

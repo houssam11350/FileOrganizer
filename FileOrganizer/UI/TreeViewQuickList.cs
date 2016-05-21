@@ -201,7 +201,7 @@ namespace FileOrganizer.UI
                 return;
             Color color = Color.Orange;
             View_ListStorageItemRow view_ListStorageItem = node.View_ListStorageItem;
-            mListViewStorage.EnsureHasItem(view_ListStorageItem.StorageItemID, color, false, true);
+            mListViewStorage.EnsureHasItem(view_ListStorageItem.StorageItemID, color, pAllowMultiple: false,pIsEnsueVisible: true);
 
         }
         public void LocateSelectedNode()

@@ -47,6 +47,7 @@ namespace FileOrganizer.UI
         public void DragAllFilesOK()
         {
             mDropedFilesList.Clear();
+            RefreshText();
 
         }
 

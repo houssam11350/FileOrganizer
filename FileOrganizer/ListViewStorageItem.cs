@@ -54,20 +54,20 @@ namespace FileOrganizer
         }
 
 
-        public void SetColorToDefault()
-        {
-            if (mStorageItem.IsFixed)
-                this.BackColor = ParentListView.FixedItemBackColor;
-            else
-                this.BackColor = ParentListView.UnFixedItemBackColor;
-        }
+        //public void SetColorToDefault()
+        //{
+        //    if (mStorageItem.IsFixed)
+        //        this.BackColor = ParentListView.FixedItemBackColor;
+        //    else
+        //        this.BackColor = ParentListView.UnFixedItemBackColor;
+        //}
 
 
 
-        public void SetColorToDefaultWithForGround()
-        {
-            SetColorToDefault();
-            this.ForeColor = SystemColors.WindowText;
-        }
+        //public void SetColorToDefaultWithForGround()
+        //{
+        //    SetColorToDefault();
+        //    this.ForeColor = SystemColors.WindowText;
+        //}
     }
 }

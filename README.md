@@ -18,6 +18,10 @@ Features:
 - You can Search with the content of your files (PDF, DOC, DOCX, TXT only supported).
  
 
+DOWNLOAD:
+
+- FileOrganizer_1.0.0.0: https://github.com/houssam11350/FileOrganizer/raw/master/Release/FileOrganizer_1.0.0.0.zip
+
 DEVELOPER:
 
 - HOUSSAM ALSHAMI (houssam11350_11350 aatt yahoo doott com).

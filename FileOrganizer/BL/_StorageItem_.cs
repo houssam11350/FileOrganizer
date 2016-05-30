@@ -4,11 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Diagnostics;
 using System.IO;
+using System.Collections.Specialized;
 
 namespace FileOrganizer.BL
 {
     public partial class StorageItemRow
     {
+        //public long old_id = 0;
+        public ListViewStorageItem ListViewStorageItem;
+
         int mInferedYear = 0;
         public int InferedYear
         {
@@ -26,6 +30,7 @@ namespace FileOrganizer.BL
             }
         }
 
+       
         public string GetExtension()
         {
             string extension = string.Empty;
@@ -162,6 +167,14 @@ namespace FileOrganizer.BL
 
     public partial class StorageItemDT
     {
+        public bool LoadByFullPathLowerCase(string pFullPath)
+        {
+            string sql = string.Format("SELECT * FROM {0} WHERE LOWER({1}) = @{1}", base.QuerySource, ColumnNames.FullPath);
+            ListDictionary l = new ListDictionary();
+            l.Add(ColumnNames.FullPath , pFullPath.ToLower());
+            return base.LoadFromSql(sql,l, System.Data.CommandType.Text);
+        }
+
         public string[] GetSuitableDescriptionWords(string pInputString)
         {
             string inputDescription = pInputString;

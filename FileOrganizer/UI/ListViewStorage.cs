@@ -150,6 +150,7 @@ namespace FileOrganizer.UI
 
         public void PutStorageItemInListViewItem(ListViewStorageItem pListViewItem, StorageItemRow pStorageItem)
         {
+            pStorageItem.ListViewStorageItem = pListViewItem;
             pListViewItem.SubItems.Clear();
             pListViewItem.Text = pStorageItem.s_URL;
 
@@ -180,9 +181,6 @@ namespace FileOrganizer.UI
             //    pListViewItem.BackColor = mUnFixedItemBackColor;
 
             pListViewItem.ToolTipText = pStorageItem.s_Description;
-
-
-
 
         }
 
@@ -268,8 +266,6 @@ namespace FileOrganizer.UI
             ListViewStorageItem lTheItem = null;
             foreach (ListViewStorageItem item in this.Items)
             {
-
-
                 if (pStorageItemID == item.StorageItem.ID)
                 {
                     isFound = true;

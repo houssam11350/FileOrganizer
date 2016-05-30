@@ -195,12 +195,9 @@ namespace FileOrganizer.BL
                 query.Append(" WHERE ");
 
                 bool first = true;
-
                 bool requiresParam;
-
                 MyParameter wItem;
                 bool skipConjuction = false;
-
                 string paramName;
                 string columnName;
 
@@ -240,7 +237,10 @@ namespace FileOrganizer.BL
 
                             requiresParam = true;
 
-                            columnName = "[" + wItem.Column + "]";
+                            if (wItem.SqlFunction == null)
+                                columnName = "[" + wItem.Column + "]";
+                            else
+                                columnName = wItem.SqlFunction + "([" + wItem.Column + "])";
                             paramName = "@" + wItem.Column + (++inc).ToString();
                             wItem.Param.ParameterName = paramName;
 
@@ -329,6 +329,7 @@ namespace FileOrganizer.BL
             }
             if (this._top >= 0) query.Append(" LIMIT " + this._top + " ");
             cmd.CommandText = query.ToString();
+            //Helper.ERRORMSG(cmd.CommandText);
             SQLiteDataAdapter adapter = new SQLiteDataAdapter(cmd);
             adapter.Fill(myEntity);
             //Helper.MSG(cmd.CommandText);

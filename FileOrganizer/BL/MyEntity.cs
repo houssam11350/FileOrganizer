@@ -40,23 +40,18 @@ namespace FileOrganizer.BL
         {
             //DataTable dataTable = null;
             bool loaded = false;
-
             try
             {
                 //dataTable = new DataTable();
-
                 SQLiteCommand cmd = MyDbConnection.Instance.connection.CreateCommand();
                 cmd.CommandText = sp;
                 cmd.CommandType = commandType;
-
                 IDataParameter p;
-
                 if (Parameters != null)
                 {
                     foreach (DictionaryEntry param in Parameters)
                     {
                         p = param.Key as IDataParameter;
-
                         if (null == p)
                         {
                             p = new SQLiteParameter((string)param.Key, param.Value);
@@ -71,11 +66,8 @@ namespace FileOrganizer.BL
                 }
 
                 SQLiteDataAdapter da = new SQLiteDataAdapter();
-
                 da.SelectCommand = cmd;
-
                 //TransactionMgr txMgr = TransactionMgr.ThreadTransactionMgr();
-
                 //txMgr.Enlist(cmd, this);
                 //DbDataAdapter dba = ConvertIDbDataAdapter(da);
                 this.Clear();

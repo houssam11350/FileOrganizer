@@ -67,7 +67,7 @@
     <OutputPath>bin\x86\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <Optimize>true</Optimize>
+    <Optimize>false</Optimize>
     <DebugType>full</DebugType>
     <PlatformTarget>x86</PlatformTarget>
     <CodeAnalysisLogFile>bin\Debug\FileOrganizer.exe.CodeAnalysisLog.xml</CodeAnalysisLogFile>
@@ -82,7 +82,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <OutputPath>bin\x86\Release\</OutputPath>
     <DefineConstants>TRACE;NooooBOOK BUID_FOR_ME</DefineConstants>
-    <Optimize>true</Optimize>
+    <Optimize>false</Optimize>
     <DebugType>pdbonly</DebugType>
     <PlatformTarget>x86</PlatformTarget>
     <CodeAnalysisLogFile>bin\Release\FileOrganizer.exe.CodeAnalysisLog.xml</CodeAnalysisLogFile>
@@ -95,6 +95,7 @@
     <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
     <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
     <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="itextsharp, Version=3.0.10.0, Culture=neutral, processorArchitecture=MSIL">
@@ -159,12 +160,8 @@
     </Compile>
     <Compile Include="BL\SortTypeOptions.cs" />
     <Compile Include="BL\StorageItemCopier.cs" />
-    <Compile Include="BL\_StorageItem_.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="BL\View_RefStorageItem.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="BL\_StorageItem_.cs" />
+    <Compile Include="BL\View_RefStorageItem.cs" />
     <Compile Include="BL\WorkSpace.cs">
       <SubType>Component</SubType>
     </Compile>

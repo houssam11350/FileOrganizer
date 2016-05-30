@@ -32,7 +32,6 @@ namespace FileOrganizer.UI
             //set { mIsCancelAll = value; }
         }
 
-
         bool mIsDragged = false;
         public bool IsDragged
         {
@@ -122,21 +121,21 @@ namespace FileOrganizer.UI
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
-            txtDescription.Text = txtDescription.Text.Replace(Environment.NewLine, " ");
+            txtDescription.Text = txtDescription.Text.Replace(Environment.NewLine, "  ");
             CheckTextBoxes();
 
             bool isNew = true;
             FrmSimilarItems frmSimilarItems = new FrmSimilarItems();
             frmSimilarItems.frmMain = this.frmMain;
-
-            mStorageItem = StorageItemDT.NewRowDefault();
+            if (mStorageItem == null)
+                mStorageItem = StorageItemDT.NewRowDefault();
             if (!string.IsNullOrEmpty(txtID.Text))
             {
                 isNew = false;
-                StorageItemDT dt = new StorageItemDT();
-                dt.LoadByPrimaryKey(int.Parse(txtID.Text));
+                //StorageItemDT dt = new StorageItemDT();
+                //dt.LoadByPrimaryKey(int.Parse(txtID.Text));
                 //mStorageItem.LoadByPrimaryKey(int.Parse(txtID.Text));
-                mStorageItem = dt[0];
+                //mStorageItem = dt[0];
                 SetStorageItem();
                 mStorageItem.Save();
                 DisplayStorageItem();
@@ -157,8 +156,6 @@ namespace FileOrganizer.UI
                     SetStorageItem();
                     mStorageItem.Save();
                 }
-
-
             }
 
             if (frmSimilarItems.FrmSimilarItemsResult == FrmSimilarItemsResult.Save)
@@ -179,18 +176,15 @@ namespace FileOrganizer.UI
                     mStorageItem = null;
             }
 
-
         }
 
         private void CheckTextBoxes()
         {
 #if BUID_FOR_ME
 
-
             if (!IsURL_OK())
             {
                 Helper.ERRORMSG("Please Check URL ! ");
-
             }
 
             if (!IsDescription_OK())
@@ -210,7 +204,6 @@ namespace FileOrganizer.UI
         {
             if (string.IsNullOrEmpty(txtURL.Text))
                 return false;
-
             try
             {
                 UriBuilder uriBuilder = new UriBuilder(txtURL.Text);
@@ -220,10 +213,7 @@ namespace FileOrganizer.UI
             catch
             {
                 return false;
-
             }
-
-
 
         }
 
@@ -265,7 +255,6 @@ namespace FileOrganizer.UI
             lstCategory.DataSource = mWorkSpaceList;
             lstCategory.DisplayMember = WorkSpaceDT.ColumnNames.WName;
             lstCategory.ValueMember = WorkSpaceDT.ColumnNames.ID;
-
             lstCategory.Text = mWorkSpace.s_WName;
 
             //if (mWorkSpace.IsForAll)
@@ -287,14 +276,10 @@ namespace FileOrganizer.UI
 
             // }
 
-
-
-
         }
 
         internal void SetDraggedFile(FileInfo pFileInfo)
         {
-
             txtName.Text = pFileInfo.Name;
             txtFullPath.Text = pFileInfo.FullName;
             PutPagesCount();
@@ -334,7 +319,6 @@ namespace FileOrganizer.UI
             string[] subKeyNames = downloadManagerRegistryKey.GetSubKeyNames();
             for (int i = 0; i < subKeyNames.Length; i++)
             {
-
                 //string subKey = (string)downloadManagerRegistryKey.GetValue(subKeyNames[i]);
                 //if (subKeyNames[i] == "386")
                 //    MessageBox.Show("386");
@@ -357,10 +341,6 @@ namespace FileOrganizer.UI
                 //    }
 
 
-
-
-
-
                 object objUrl0 = entryRegistryKey.GetValue("Url0");
                 string url0 = string.Empty;
                 if (objUrl0 != null)
@@ -375,8 +355,6 @@ namespace FileOrganizer.UI
                                 mIsDownloadManagerHandledOK = true;
                                 break;
                             }
-
-
                     }
 
                 object objLocalFileName = entryRegistryKey.GetValue("LocalFileName");
@@ -464,16 +442,13 @@ namespace FileOrganizer.UI
             try
             {
                 string extension = string.Empty;
-
                 extension = Path.GetExtension(txtFullPath.Text);
                 if (string.IsNullOrEmpty(extension))
                     extension = Path.GetExtension(txtName.Text);
-
                 if (string.IsNullOrEmpty(extension))
                 {
                     return;
                 }
-
 
                 if (extension.ToUpper().Equals(".PDF".ToUpper()))
                 {
@@ -482,17 +457,14 @@ namespace FileOrganizer.UI
                     {
                         PdfReader reader = new PdfReader(file);
                         txtPagesCount.Text = reader.NumberOfPages.ToString();
+                        reader.Close();
                     }
                 }
-
             }
             catch (Exception ex)
             {
                 Helper.HandleException(ex);
             }
-
-
-
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -518,9 +490,7 @@ namespace FileOrganizer.UI
                 lblFileIndex.Visible = false;
 
             }
-
             lblFileIndex.Text = string.Format("File {0} From Files {1}", (pFileIndex + 1), pFilesCount);
-
 
         }
 
@@ -533,7 +503,6 @@ namespace FileOrganizer.UI
 
         private void btnCalcSizeName_Click(object sender, EventArgs e)
         {
-
             FileInfo fileInfo = new FileInfo(txtFullPath.Text);
             txtName.Text = fileInfo.Name;
             PutPagesCount();
@@ -546,8 +515,6 @@ namespace FileOrganizer.UI
             }
             else
                 txtSize.Text = dSize.FormatSize(fileInfo.Length);
-
-
 
         }
 

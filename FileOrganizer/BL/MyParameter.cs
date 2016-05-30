@@ -151,6 +151,8 @@ namespace FileOrganizer.BL
         private object _betweenBegin = null;
         private object _betweenEnd = null;
 
+        public string SqlFunction = null;
+
 
     }
 

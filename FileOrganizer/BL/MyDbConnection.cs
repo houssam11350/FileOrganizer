@@ -18,7 +18,7 @@ namespace FileOrganizer.BL
         public string connectin_string = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + Application.StartupPath + "/BooksDB.mdb;Persist Security Info=False;";
 #else
         public string connectin_string = "Data Source=" + Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location) 
-                                        + "/FileOrganizerDB.sqlite;Version=3;New=False;Compress=False;";
+                                        + "/" + Path.GetFileNameWithoutExtension(System.Reflection.Assembly.GetEntryAssembly().CodeBase) + "DB.sqlite;Version=3;New=False;Compress=False;";
 #endif
 
         public static MyDbConnection Instance = new MyDbConnection();
@@ -34,6 +34,15 @@ namespace FileOrganizer.BL
             adapter = new SQLiteDataAdapter(commandWithNoParameter);
             commandWithNoParameter.CommandText = "PRAGMA foreign_keys=ON;";
             commandWithNoParameter.ExecuteNonQuery();
+            commandWithNoParameter.CommandText = "PRAGMA journal_mode = MEMORY";
+            commandWithNoParameter.ExecuteNonQuery();
+            commandWithNoParameter.CommandText = "PRAGMA synchronous = OFF";
+            commandWithNoParameter.ExecuteNonQuery();
+            commandWithNoParameter.CommandText = "PRAGMA cache_size = 4000";
+            commandWithNoParameter.ExecuteNonQuery();
+            commandWithNoParameter.CommandText = "PRAGMA encoding = 'UTF-8'";
+            commandWithNoParameter.ExecuteNonQuery();
+
             //adapter.SelectCommand = commandWithNoParameter;
         }
 

@@ -274,7 +274,7 @@ namespace FileOrganizer.BL
             {
                 get
                 {
-                    return new SQLiteParameter(StorageItemDT.ColumnNames.FullPath, DbType.String, 2147483647);
+                    return new SQLiteParameter(StorageItemDT.ColumnNames.FullPath, DbType.String, 255);
                 }
             }
 

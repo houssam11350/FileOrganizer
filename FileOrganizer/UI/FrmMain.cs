@@ -96,7 +96,7 @@ namespace FileOrganizer.UI
 #if BOOK
             this.Text = "Books";
 #else
-            this.Text = "FileOrganizer";
+            this.Text = Path.GetFileNameWithoutExtension(System.Reflection.Assembly.GetEntryAssembly().CodeBase);
 #endif
 
             //stStorageItem.Items.Add(dlgOpenFile.FileName, _iconListManager.AddFileIcon(dlgOpenFile.FileName));
@@ -284,7 +284,6 @@ namespace FileOrganizer.UI
             TreeNode refNode = new TreeNode();
             refNode.Text = string.Format("References ({0})", refNode.Nodes.Count);
             refNode.ImageIndex = refNode.SelectedImageIndex = sysIcons.GetIconIndex(Application.ExecutablePath);
-
             return refNode;
 
         }
@@ -294,7 +293,6 @@ namespace FileOrganizer.UI
             TreeNode fatherRefNode = new TreeNode();
             fatherRefNode.Text = string.Format("Reference In ({0})", fatherRefNode.Nodes.Count);
             fatherRefNode.ImageIndex = fatherRefNode.SelectedImageIndex = sysIcons.GetIconIndex(Application.ExecutablePath);
-
             return fatherRefNode;
 
         }
@@ -355,12 +353,8 @@ namespace FileOrganizer.UI
             {
                 //mWorkSpaceList.Rows.Add(frm.WorkSpace);
                 tvWorkSpace.AddNewNodeForWorkSpace(frm.WorkSpace);
-
-
             }
-
         }
-
 
         private void lstStorageItem_DoubleClick(object sender, EventArgs e)
         {
@@ -369,16 +363,16 @@ namespace FileOrganizer.UI
             StorageItemRow storageItem = (StorageItemRow)lstStorageItem.SelectedItems[0].Tag;
             ShowStorageItem(storageItem);
 
-
         }
+
         private WorkSpaceRow GetWorkSpaceByID(long pID)
         {
             foreach (WorkSpaceRow row in mWorkSpaceList.Rows)
                 if (row.ID == pID)
                     return row;
-
             return null;
         }
+
         private void ShowStorageItem(StorageItemRow pStorageItemRow)
         {
             FrmStorageItem frmStorageItem = new FrmStorageItem();
@@ -398,34 +392,31 @@ namespace FileOrganizer.UI
             frmStorageItem.WorkSpaceList = tvWorkSpace.GetWorkSpaceListFromTree();
             frmStorageItem.ShowDialog();
             //DisplayStorageItems();
-            lstStorageItem.PutStorageItemInListViewItem((ListViewStorageItem)lstStorageItem.SelectedItems[0], frmStorageItem.StorageItem);
+            //lstStorageItem.PutStorageItemInListViewItem((ListViewStorageItem)lstStorageItem.SelectedItems[0], frmStorageItem.StorageItem);
 
+            frmStorageItem.StorageItem.ListViewStorageItem.DisplayStorageItem();
             HandleAfterSave(frmStorageItem.StorageItem);
         }
+
         private void HandleAfterSave(StorageItemRow pStorageItem)
         {
             DisplayDesc(pStorageItem);
             foreach (TreeViewQuickList treeViewQList in mTreeViewQuickList_List)
                 treeViewQList.HandleStorageItemAfterSave(pStorageItem);
-
         }
 
         private void DisplayDesc(StorageItemRow pStorageItem)
         {
             txtMainStorageItemDesc.Text = pStorageItem.s_Description;
             //item.BackColor = Color.Red;
-
             txtMainStorageItemDesc.Text += "\r\n----------\r\n";
             txtMainStorageItemDesc.Text += string.Format("{0} pages", pStorageItem.s_PagesCount);
-
             txtMainStorageItemDesc2.Text = txtMainStorageItemDesc.Text;
             DisplayReferenceView(pStorageItem);
             DisplayOneSiteGroup(pStorageItem);
             DisplaySimilarItesm(pStorageItem);
             // DisplayGroupStorageItem(pStorageItem);
             DisplayListStorageItem(pStorageItem);
-
-
         }
 
         private void DisplayListStorageItem(StorageItemRow pStorageItem)
@@ -463,43 +454,32 @@ namespace FileOrganizer.UI
                 itemNode.Tag = storageItemLoop;
                 itemNode.ImageIndex = itemNode.SelectedImageIndex = sysIcons.GetIconIndex(storageItemLoop.GetPathIconForStorageItem());
                 tvSimilarItems.Nodes.Add(itemNode);
-
                 if (pStorageItem.ID == storageItemLoop.ID)
                 {
                     itemNode.EnsureVisible();
                     itemNode.BackColor = Color.Red;
-
                 }
-
             }
             tvSimilarItems.ExpandAll();
-
         }
         private void DisplayOneSiteGroup(StorageItemRow pStorageItem)
         {
-
             tvOneSiteGroup.Nodes.Clear();
-
-
             if (Options.GetInstance().IsSameSiteLoadingEnabled == false)
             {
                 TreeNode hostNode = new TreeNode(pStorageItem.GetHost());
                 hostNode.ImageIndex = hostNode.SelectedImageIndex = sysIcons.GetIconIndex(Application.ExecutablePath);
                 tvOneSiteGroup.Nodes.Add(hostNode);
-
                 return;
             }
 
             string lStorageItemHost = pStorageItem.GetHost().ToUpper();
             Dictionary<string, List<StorageItemRow>> dicStorageItem = new Dictionary<string, List<StorageItemRow>>();
             List<string> iDsList = new List<string>();
-
             foreach (ListViewItem item in lstStorageItem.Items)
             {
-
                 StorageItemRow storageItem = (StorageItemRow)item.Tag;
                 string host = storageItem.GetHost();
-
                 if (lStorageItemHost.Equals(host.ToUpper()))
                 {
                     iDsList.Add(storageItem.s_ID);
@@ -507,10 +487,8 @@ namespace FileOrganizer.UI
                 }
 
             }
-
             List<KeyValuePair<string, List<StorageItemRow>>> myList = new List<KeyValuePair<string, List<StorageItemRow>>>(dicStorageItem);
             DisplayGroupList(tvOneSiteGroup, myList, pStorageItem, "(Visible On List)");
-
             string iDListStr = string.Join(",", iDsList.ToArray());
             FetchStorageItemsNotInLstStorage(lStorageItemHost, iDListStr);
 
@@ -518,7 +496,6 @@ namespace FileOrganizer.UI
 
         private void FetchStorageItemsNotInLstStorage(string pStorageItemHost, string pIDListStr)
         {
-
             Dictionary<string, List<StorageItemRow>> dicStorageItem = new Dictionary<string, List<StorageItemRow>>();
             StorageItemDT storageItem = new StorageItemDT();
             PutURLIDParameter(storageItem, pStorageItemHost, pIDListStr);
@@ -788,10 +765,10 @@ namespace FileOrganizer.UI
                 FileInfo fileInfo = new FileInfo(sFile);
                 // string s = GetS();
                 StorageItemDT lStorageItem = new StorageItemDT();
-                lStorageItem.Query.AddWhereParameter(StorageItemDT.Parameters.FullPath, fileInfo.FullName);
+                lStorageItem.Query.AddWhereParameter(StorageItemDT.Parameters.FullPath, fileInfo.FullName.ToLower()).SqlFunction = "LOWER";
                 if (lStorageItem.Query.Load())
+                //1if(lStorageItem.LoadByFullPathLowerCase(fileInfo.FullName))
                 {
-
                     ListViewStorageItem item = lstStorageItem.EnsureHasItem(lStorageItem[0].ID);
                     item.Selected = true;
                     //lstStorageItem_DoubleClick(null, null);
@@ -799,6 +776,7 @@ namespace FileOrganizer.UI
                 }
                 else
                 {
+                    //lStorageItem.Query.Load
                     FrmStorageItem frmStorageItem = new FrmStorageItem();
                     frmStorageItem.frmMain = this;
                     frmStorageItem.TheWorkSpace = workSpace;
@@ -827,9 +805,7 @@ namespace FileOrganizer.UI
                     }
 
                 }
-
                 //PutStorageItemInListViewItem(lstStorageItem.SelectedItems[0], frmStorageItem.StorageItem); 
-
             }
             if (fileIndex == filesCount)
                 ctrlTargetArea.DragAllFilesOK();
@@ -1815,7 +1791,7 @@ namespace FileOrganizer.UI
 
             List<KeyValuePair<string, List<StorageItemRow>>> myList = new List<KeyValuePair<string, List<StorageItemRow>>>(dicStorageItem);
             myList.Sort(
-                delegate(KeyValuePair<string, List<StorageItemRow>> first,
+                delegate (KeyValuePair<string, List<StorageItemRow>> first,
                 KeyValuePair<string, List<StorageItemRow>> second)
                 {
                     return first.Value.Count.CompareTo(second.Value.Count);
@@ -2180,7 +2156,7 @@ namespace FileOrganizer.UI
             }
         }
 
- 
+
 
         private void mnuItemRemoveNote_Click(object sender, EventArgs e)
         {
@@ -2268,7 +2244,7 @@ namespace FileOrganizer.UI
                                 mStorageItemCopier.SourceList.Count != 0;
         }
 
-       
+
 
         private void mnuFileNew_Click(object sender, EventArgs e)
         {
@@ -2968,46 +2944,50 @@ namespace FileOrganizer.UI
 
         private void mnuItemCheckForUpdate_Click(object sender, EventArgs e)
         {
-            string url = "https://raw.githubusercontent.com/houssam11350/FileOrganizer/master/currentVersion";
-            WebClient client = new WebClient();
-            string downloadString = client.DownloadString(url);
-            string[] arr = downloadString.Split(new char[] { '.' });
-            if (arr.Length != 4)
-                throw new Exception("Invalid reply from the server:" + downloadString);
-            int[] int_arr = new int[] { int.Parse(arr[0]), int.Parse(arr[1]) ,
+            try
+            {
+                string url = "https://raw.githubusercontent.com/houssam11350/FileOrganizer/master/currentVersion";
+                WebClient client = new WebClient();
+                string downloadString = client.DownloadString(url);
+                string[] arr = downloadString.Split(new char[] { '.' });
+                if (arr.Length != 4)
+                    throw new Exception("Invalid reply from the server:" + downloadString);
+                int[] int_arr = new int[] { int.Parse(arr[0]), int.Parse(arr[1]) ,
                                         int.Parse(arr[2]) , int.Parse(arr[3])};
 
-            string[] curr = FrmMain.CurrentVersion.Split(new char[] { '.' });
-            int[] curr_arr = new int[] { int.Parse(curr[0]), int.Parse(curr[1]) ,
+                string[] curr = FrmMain.CurrentVersion.Split(new char[] { '.' });
+                int[] curr_arr = new int[] { int.Parse(curr[0]), int.Parse(curr[1]) ,
                                         int.Parse(curr[2]) , int.Parse(curr[3])};
 
-            bool isUpToDate = true;
-            for (int i = curr_arr.Length - 1; i >= 0; i--)
-            {
-                if (curr_arr[i] < int_arr[i])
+                bool isUpToDate = true;
+                for (int i = curr_arr.Length - 1; i >= 0; i--)
                 {
-                    Helper.OKMSG(string.Format(
-                      "Your Version: {0}. {1} Server Version: {2} {1} Please download last version from: https://github.com/houssam11350/FileOrganizer",
-                      FrmMain.CurrentVersion, Environment.NewLine, downloadString));
-                    isUpToDate = false;
-                    string browserPath = Helper.GetStandardBrowserPath();
-                    if (!string.IsNullOrEmpty(browserPath))
+                    if (curr_arr[i] < int_arr[i])
                     {
-                        Process.Start(browserPath, "https://github.com/houssam11350/FileOrganizer");
+                        Helper.OKMSG(string.Format(
+                          "Your Version: {0}. {1} Server Version: {2} {1} Please download last version from: https://github.com/houssam11350/FileOrganizer",
+                          FrmMain.CurrentVersion, Environment.NewLine, downloadString));
+                        isUpToDate = false;
+                        string browserPath = Helper.GetStandardBrowserPath();
+                        if (!string.IsNullOrEmpty(browserPath))
+                        {
+                            Process.Start(browserPath, "https://github.com/houssam11350/FileOrganizer");
+                        }
+
+                        break;
+
                     }
 
-                    break;
-
                 }
-
+                if (isUpToDate)
+                    Helper.OKMSG(string.Format(
+                         "Your Version: {0}. {1} Server Version: {2} {1} You are uptodate.",
+                         FrmMain.CurrentVersion, Environment.NewLine, downloadString));
             }
-            if (isUpToDate)
-                Helper.OKMSG(string.Format(
-                     "Your Version: {0}. {1} Server Version: {2} {1} You are uptodate.",
-                     FrmMain.CurrentVersion, Environment.NewLine, downloadString));
-
-
-
+            catch
+            {
+                Helper.ERRORMSG("An error occured during checking updates..");
+            }
         }
 
         private void btnDoSearch_Click(object sender, EventArgs e)

@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using System.Data;
 using System.Data.OleDb;
 using Microsoft.Win32;
+using System.IO;
 
 namespace System
 {
@@ -13,7 +14,10 @@ namespace System
         {
 
         }
-
+        public static string GetExeName()
+        {
+            return Path.GetFileNameWithoutExtension(System.Reflection.Assembly.GetEntryAssembly().CodeBase);
+        }
         //public static void MSG(string msg)
         //{
         //    System.Windows.Forms.MessageBox.Show(msg);
@@ -57,7 +61,7 @@ namespace System
             return browserPath;
         }
 
-      
+
 
 
         public static int DecimalToFloorInt(decimal DecimalVal_)
@@ -99,7 +103,7 @@ namespace System
 
         public static void ERRORMSG(string _Msg)
         {
-            string _Caption = "File Organizer";
+            string _Caption = GetExeName();
             System.Windows.Forms.MessageBox.Show(_Msg, _Caption,
                 System.Windows.Forms.MessageBoxButtons.OK,
                 System.Windows.Forms.MessageBoxIcon.Error,
@@ -107,7 +111,7 @@ namespace System
         }
         public static void OKMSG(string _Msg)
         {
-            string _Caption = "File Organizer";
+            string _Caption = GetExeName();
             System.Windows.Forms.MessageBox.Show(_Msg, _Caption,
                 System.Windows.Forms.MessageBoxButtons.OK,
                 System.Windows.Forms.MessageBoxIcon.Information,

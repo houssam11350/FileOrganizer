@@ -39,20 +39,18 @@ namespace FileOrganizer
 
         }
 
-
-
         public ListViewStorageItem(StorageItemRow pStorageItem)
             : base()
         {
 
             mStorageItem = pStorageItem;
+            pStorageItem.ListViewStorageItem = this;
         }
 
         public void DisplayStorageItem()
         {
             ParentListView.PutStorageItemInListViewItem(this, mStorageItem);
         }
-
 
         //public void SetColorToDefault()
         //{
